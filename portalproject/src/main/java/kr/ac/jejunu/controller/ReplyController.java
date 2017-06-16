@@ -19,6 +19,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
+
 /**
  * Created by park-gunwoo on 2017. 6. 13..
  */
@@ -63,6 +65,12 @@ public class ReplyController {
         return "write";
     }
 
+    @RequestMapping(value="/update", method=RequestMethod.POST)
+    public String update(Model model)
+    {
+        return "update";
+    }
+
 
     @RequestMapping(value="/post", method=RequestMethod.POST)
     public String write(Reply reply) throws Exception{
@@ -72,12 +80,30 @@ public class ReplyController {
     }
 
 
-    @RequestMapping(value="/index", method=RequestMethod.POST)
+    @RequestMapping(value="/signup", method=RequestMethod.POST)
     public String signup(User user) throws Exception{
 
         userRepository.save(user);
         return "redirect:/";
     }
+
+    @RequestMapping(value="/delete", method=RequestMethod.POST)
+    public String delete(@RequestParam String id, Model model) throws Exception{
+        replyRepository.delete(Integer.parseInt(id));
+        return "redirect:/";
+    }
+
+    @RequestMapping(value="/updatecomment", method=RequestMethod.POST)
+    public String update(@RequestParam String id, Model model) throws Exception{
+
+        Reply reply =  replyRepository.findOne(Integer.parseInt(id));
+
+        replyRepository.save(reply);
+
+        return "redirect:/";
+    }
+
+
 //
 
 //    @RequestMapping(value="/post", method=RequestMethod.POST)

@@ -45,12 +45,16 @@
             </form>
         </td>
         <td style="width:10%; text-align: center">
-            <form>
+            <form method="POST" action="/update">
+                <input style="display: none" type="text" th:name="id" th:values="${list.id}"></input>
+                <input style="display: none" type="text" th:name="id" th:values="${list.name}"></input>
+                <input style="display: none" type="text" th:name="id" th:values="${list.comment}"></input>
                 <input th:type = 'submit' th:value="수정"> </input>
             </form>
         </td>
         <td style="width:10%; text-align: center">
-            <form>
+            <form method="POST" action="/delete">
+                <input style="display: none" type="text" th:name="id" th:value="${list.id}"> </input>
                 <input th:type = 'submit' th:value="삭제"> </input>
             </form>
         </td>
