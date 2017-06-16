@@ -66,8 +66,12 @@ public class ReplyController {
     }
 
     @RequestMapping(value="/update", method=RequestMethod.POST)
-    public String update(Model model)
+    public String update(@RequestParam String id, Model model)
     {
+        Reply reply = replyRepository.findOne(Integer.parseInt(id));
+
+        model.addAttribute("id", reply);
+
         return "update";
     }
 
@@ -94,10 +98,12 @@ public class ReplyController {
     }
 
     @RequestMapping(value="/updatecomment", method=RequestMethod.POST)
-    public String update(@RequestParam String id, Model model) throws Exception{
+    public String updatecomment(@RequestParam String id,@RequestParam String name, @RequestParam String comment,  Model model) throws Exception{
 
         Reply reply =  replyRepository.findOne(Integer.parseInt(id));
 
+        reply.setName(name);
+        reply.setComment(comment);
         replyRepository.save(reply);
 
         return "redirect:/";
