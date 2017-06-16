@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" type="text/css"  href="css/style.css"/>
+    <title>로그인</title>
+</head>
+<body>
+
+
+<div class="div1">
+
+    <div class="div2">
+        <div class="text1"> ID </div> <input th:type="text" th:name="id"></input><br/>
+    </div>
+
+    <div class="div2">
+        <div class="text1"> PASSWORD </div> <input type="password" name="pw"></input> <br/>
+    </div>
+
+    <div class="div3">
+        <form class="button" method="post" action="loginok.html">
+            <input th:type="submit"  th:value="로그인"> </input>
+        </form>
+
+        <form class="button" action="index.html">
+            <input th:type="submit" th:value="취소"> </input>
+        </form>
+    </div>
+
+</div>
+
+</body>
+</html>

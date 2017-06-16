@@ -1,0 +1,11 @@
+spring:
+  thymeleaf:
+    cache: false
+    suffix: .html
+
+
+  datasource:
+    url: jdbc:mysql://localhost/portalproject
+    username: root
+    password: 4693
+    driver-class-name: com.mysql.jdbc.Driver

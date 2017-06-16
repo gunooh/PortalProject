@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+    <title>댓글 시스템</title>
+
+</head>
+
+<body>
+<div style="border-bottom: solid 1px gray">
+    <form style="display:inline-block; margin: 5px" action="signup.html">
+        <input th:type = 'submit' th:value = "회원가입"> </input>
+    </form>
+
+    <form style="display:inline-block; margin: 5px" method="GET" action="/write">
+        <input th:type = 'submit' th:value = "글쓰기"> </input>
+    </form>
+</div>
+</body>
+
+<table style="width:100%">
+    <tr style="border-bottom: solid 1px gray">
+        <th style="width:5%"> 번호 </th>
+        <th style="width:15%"> 작성자 </th>
+        <th style="width:30%"> 댓글 </th>
+        <th style="width:5%"> 추천 </th>
+        <th style="width:5%"> 반대 </th>
+        <th style="width:10%">수정</th>
+        <th style="width:10%">삭제</th>
+        <th style="width:20%"> 시간 </th>
+    </tr>
+
+    <tr th:each="list : ${list}">
+        <td style="width:5%; text-align: center" th:text="${list.id}">번호</td>
+        <td style="width:15%; text-align: center" th:text="${list.name}">작성자</td>
+        <td style="width:30%; text-align: center" th:text="${list.comment}">댓글</td>
+        <td style="width:5%; text-align: center">
+            <form>
+                <input th:type = 'submit' th:value="${list.good}"> </input>
+            </form>
+        </td>
+        <td style="width:5%; text-align: center">
+            <form>
+                <input th:type = 'submit' th:value="${list.bad}"> </input>
+            </form>
+        </td>
+        <td style="width:10%; text-align: center">
+            <form>
+                <input th:type = 'submit' th:value="수정"> </input>
+            </form>
+        </td>
+        <td style="width:10%; text-align: center">
+            <form>
+                <input th:type = 'submit' th:value="삭제"> </input>
+            </form>
+        </td>
+        <td style="width:20%; text-align: center" th:text="${list.time}"></td>
+    </tr>
+</table>
+
+
+</html>
+

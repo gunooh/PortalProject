@@ -1,0 +1,32 @@
+html {
+
+
+}
+
+.divtop {
+    border-bottom: solid 1px gray;
+}
+
+.button {
+    display:inline-block;
+     margin: 5px;
+}
+
+
+.div1 {
+    display: inline-block;
+}
+
+.div2 {
+    height: 30px;
+}
+
+.div3 {
+    text-align: center;
+}
+
+
+.text1 {
+    display: inline-block;
+    width: 100px;
+}

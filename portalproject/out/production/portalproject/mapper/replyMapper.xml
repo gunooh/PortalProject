@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="kr.ac.jejunu.repository.ReplyRepository">
+
+    <insert id="replyInsert" parameterType="kr.ac.jejunu.model.Reply">
+        insert into reply
+        values
+        (#{id},#{name},#{comment},#{good},#{bad},now())
+    </insert>
+
+    <select id="boardList" resultType="kr.ac.jejunu.model.Reply">
+        select * from board_pro
+    </select>
+
+    <select id="boardView" parameterType="int" resultType="kr.ac.jejunu.model.Reply">
+        select * from board_pro where bno = #{bno}
+    </select>
+
+    <update id="hitPlus" parameterType="int">
+        update board_pro set hit = hit+1 where bno = #{bno}
+    </update>
+
+    <update id="boardUpdate" parameterType="kr.ac.jejunu.model.Reply">
+        update board_pro set subject = #{subject}, content = #{content} where bno = #{bno}
+    </update>
+
+    <delete id="boardDelete" parameterType="int">
+        delete from board_pro where bno = #{bno}
+    </delete>
+</mapper>
