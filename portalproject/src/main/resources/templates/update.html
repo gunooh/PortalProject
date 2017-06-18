@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.org">
+<head>
+    <!-- BootStrap CDN -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css"/>
+    <title>댓글 수정</title>
+</head>
+
+<body>
+<h4 style="text-align: center">댓글 수정</h4>
+<div style="padding : 30px">
+    <form method="POST" action="/updatecomment">
+        <div class="form-group">
+            <label>작성자</label>
+            <input style="display: none" th:type="text" th:name="id" th:value="4"/>
+            <input th:type="text" th:name="name" th:class="form-control" th:value="5"/>
+        </div>
+        <div class="form-group">
+            <label>내용</label>
+            <textarea th:name="comment" th:class="form-control" th:rows="5" th:value="6"></textarea>
+        </div>
+        <button th:type="submit" th:class="btn-default">수정</button>
+    </form>
+</div>
+</body>
+</html>
