@@ -1,6 +1,9 @@
 package kr.ac.jejunu.model;
 
+import org.exolab.castor.types.DateTime;
+
 import javax.persistence.*;
+import java.sql.Timestamp;
 import java.util.Date;
 
 /**
@@ -23,9 +26,9 @@ public class Reply {
     @Column(name= "bad")
     private int bad;
 
-    @Temporal(TemporalType.DATE)
+//    @Temporal(TemporalType.DATE)
     @Column(name= "time", nullable = true)
-    private Date time;
+    private Timestamp time;
 
     public Reply() {
         Reply reply;
@@ -71,11 +74,11 @@ public class Reply {
         this.bad = bad;
     }
 
-    public Date getTime() {
+    public Timestamp getTime() {
         return time;
     }
 
-    public void setTime(Date time) {
+    public void setTime(Timestamp time) {
         this.time = time;
     }
 

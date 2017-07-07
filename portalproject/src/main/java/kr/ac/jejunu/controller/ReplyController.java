@@ -28,12 +28,10 @@ import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
 @Controller
 public class ReplyController {
 
-
-
     @Autowired
     private ReplyRepository replyRepository;
-    private UserRepository userRepository;
-    private ReplyMapper replyMapper;
+
+
 
 
     @RequestMapping(value={"/" , "/index"})
@@ -54,10 +52,10 @@ public class ReplyController {
         return "login";
     }
 
-    @RequestMapping("/signup")
-        public String signup(Model model){
-            return "signup";
-    }
+//    @RequestMapping("/signup")
+//        public String signup(Model model){
+//            return "signup";
+//    }
 
     @RequestMapping(value="/write",method=RequestMethod.GET)
     public String writepage(Model model)
@@ -65,14 +63,36 @@ public class ReplyController {
         return "write";
     }
 
-    @RequestMapping(value="/update", method=RequestMethod.POST)
-    public String update(@RequestParam String id, Model model)
+    @RequestMapping(value="/update",method=RequestMethod.GET)
+    public String update(@RequestParam String id, Model model) throws Exception
     {
         Reply reply = replyRepository.findOne(Integer.parseInt(id));
 
         model.addAttribute("id", reply);
 
         return "update";
+    }
+
+    @RequestMapping(value="/good",method=RequestMethod.POST)
+    public String good(@RequestParam String id, @RequestParam int good, Model model) throws Exception
+    {
+        Reply reply = replyRepository.findOne(Integer.parseInt(id));
+
+        reply.setGood(good+1);
+        replyRepository.save(reply);
+
+        return "redirect:/";
+    }
+
+    @RequestMapping(value="/bad",method=RequestMethod.POST)
+    public String bad(@RequestParam String id, @RequestParam int bad, Model model) throws Exception
+    {
+        Reply reply = replyRepository.findOne(Integer.parseInt(id));
+
+        reply.setBad(bad+1);
+        replyRepository.save(reply);
+
+        return "redirect:/";
     }
 
 
@@ -84,13 +104,6 @@ public class ReplyController {
     }
 
 
-    @RequestMapping(value="/signup", method=RequestMethod.POST)
-    public String signup(User user) throws Exception{
-
-        userRepository.save(user);
-        return "redirect:/";
-    }
-
     @RequestMapping(value="/delete", method=RequestMethod.POST)
     public String delete(@RequestParam String id, Model model) throws Exception{
         replyRepository.delete(Integer.parseInt(id));
@@ -100,7 +113,7 @@ public class ReplyController {
     @RequestMapping(value="/updatecomment", method=RequestMethod.POST)
     public String updatecomment(@RequestParam String id,@RequestParam String name, @RequestParam String comment,  Model model) throws Exception{
 
-        Reply reply =  replyRepository.findOne(Integer.parseInt(id));
+        Reply reply = replyRepository.findOne(Integer.parseInt(id));
 
         reply.setName(name);
         reply.setComment(comment);
@@ -108,35 +121,5 @@ public class ReplyController {
 
         return "redirect:/";
     }
-
-
-//
-
-//    @RequestMapping(value="/post", method=RequestMethod.POST)
-//
-//    public String write(@ModelAttribute("Reply") Reply reply) throws Exception{
-//
-//        replyMapper.replyInsert(reply);
-//
-//        return "redirect:/";
-//    }
-
-
-//    @RequestMapping(value="/post", method=RequestMethod.POST)
-//    public String write(@RequestParam String name, @RequestParam String comment) throws Exception{
-//
-//
-//            Reply reply = new Reply();
-//
-//            reply.setName(name);
-//            reply.setComment(comment);
-//
-//            replyRepository.save(reply);
-//
-//        return "redirect://localhost:8080/index";
-//    }
-
-
-
 
 }

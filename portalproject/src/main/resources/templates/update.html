@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <!-- BootStrap CDN -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"/>
@@ -10,15 +10,15 @@
 <body>
 <h4 style="text-align: center">댓글 수정</h4>
 <div style="padding : 30px">
-    <form method="POST" action="/updatecomment">
+    <form method="POST" action="/updatecomment" th:each="id : ${id}">
         <div class="form-group">
             <label>작성자</label>
-            <input style="display: none" th:type="text" th:name="id" th:value="4"/>
-            <input th:type="text" th:name="name" th:class="form-control" th:value="5"/>
+            <input style="display:none" th:type="text" th:name="id" th:value="${id.id}"></input>
+            <input th:type="text" th:name="name" th:class="form-control" th:value="${id.name}"></input>
         </div>
         <div class="form-group">
             <label>내용</label>
-            <textarea th:name="comment" th:class="form-control" th:rows="5" th:value="6"></textarea>
+            <input th:name="comment" th:class="form-control" th:rows="5" th:value="${id.comment}"></input>
         </div>
         <button th:type="submit" th:class="btn-default">수정</button>
     </form>

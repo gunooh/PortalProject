@@ -8,11 +8,11 @@
 
 <body>
 <div style="border-bottom: solid 1px gray">
-    <form style="display:inline-block; margin: 5px" action="signup.html">
+    <form style="display:inline-block; margin: 5px" method="GET" action="/signup">
         <input th:type = 'submit' th:value = "회원가입"> </input>
     </form>
 
-    <form style="display:inline-block; margin: 5px" action="login.html">
+    <form style="display:inline-block; margin: 5px" method="GET" action="/login">
         <input th:type = 'submit' th:value = "로그인"> </input>
     </form>
 
@@ -39,21 +39,21 @@
         <td style="width:15%; text-align: center" th:text="${list.name}">작성자</td>
         <td style="width:30%; text-align: center" th:text="${list.comment}">댓글</td>
         <td style="width:5%; text-align: center">
-            <form>
-                <input th:type = 'submit' th:value="${list.good}"> </input>
+            <form method="post" action="/good">
+                <input style="display: none" type="text" th:name="id" th:value="${list.id}"></input>
+                <input th:type = 'submit' th:name="good" th:value="${list.good}"> </input>
             </form>
         </td>
         <td style="width:5%; text-align: center">
-            <form>
-                <input th:type = 'submit' th:value="${list.bad}"> </input>
+            <form method="post" action="/bad">
+                <input style="display: none" type="text" th:name="id" th:value="${list.id}"></input>
+                <input th:type = 'submit' th:name="bad" th:value="${list.bad}"> </input>
             </form>
         </td>
         <td style="width:10%; text-align: center">
-            <form method="POST" action="/update">
-                <input style="display: none" type="text" th:name="id" th:values="${list.id}"></input>
-                <input style="display: none" type="text" th:name="id" th:values="${list.name}"></input>
-                <input style="display: none" type="text" th:name="id" th:values="${list.comment}"></input>
-                <input th:type = 'submit' th:value="수정"> </input>
+            <form method="GET" action="/update">
+                <input style="display: none" type="text" th:name="id" th:value="${list.id}"></input>
+                 <input th:type = 'submit' th:value="수정"> </input>
             </form>
         </td>
         <td style="width:10%; text-align: center">

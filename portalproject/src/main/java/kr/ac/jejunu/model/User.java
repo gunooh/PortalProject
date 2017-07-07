@@ -17,8 +17,15 @@ public class User {
     private String userid;
     @Column(name = "password")
     private String password;
+    @Column(name = "name")
+    private String name;
     @Column(name = "exp")
     private String exp;
+
+    public User() {
+        User user;
+    }
+
 
     public Integer getId() {
         return id;
@@ -44,6 +51,14 @@ public class User {
         this.password = password;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public String getExp() {
         return exp;
     }
@@ -51,6 +66,7 @@ public class User {
     public void setExp(String exp) {
         this.exp = exp;
     }
+
 }
 
 
